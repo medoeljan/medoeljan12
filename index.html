@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEDO EL JAN | Programming Academy</title>
+<style>
+:root{--cyan:#00d9ff;--blue:#1769ff;--purple:#a100ff;--pink:#ff36e7;--bg:#020510;--white:#f4f7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-3;background:radial-gradient(ellipse at 50% 35%,#071c55 0,#020510 60%,#01030a 100%)}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:-2;opacity:.36;pointer-events:none}
+header{height:74px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:8px 3%;background:#02040de8;border:1px solid #12366d;border-radius:0 0 24px 24px;box-shadow:0 0 24px #001d60}
+.brand{display:flex;align-items:center;gap:12px;direction:ltr;white-space:nowrap}.brandmark{font-size:40px;font-weight:900;color:var(--purple);text-shadow:0 0 12px var(--purple)}.brandname{font-weight:900;font-size:20px;letter-spacing:1px}.brandname span{color:var(--pink)}.brand small{display:block;color:#b7c5df;font-size:12px;font-weight:400;letter-spacing:0}
+nav{display:flex;align-items:center;gap:4px;border:1px solid #123d78;background:#030817;border-radius:35px;padding:5px}nav a{padding:10px 15px;border-radius:28px;color:#e7efff;text-decoration:none;font-size:14px;white-space:nowrap;transition:.25s}nav a:hover,nav a.active{background:linear-gradient(100deg,#123cff,#250b75);box-shadow:0 0 18px #3b4dff;border:1px solid #00bfff}.theme{display:flex;gap:12px;padding:10px 16px;border:1px solid #6a1cbd;border-radius:30px;color:#fff;font-size:21px;box-shadow:0 0 14px #32106a}
+.hero{position:relative;min-height:490px;display:grid;grid-template-columns:.92fr 1.08fr;align-items:center;padding:26px 3.5% 10px;gap:16px;overflow:hidden}
+.hero-copy{z-index:2}.pill{display:inline-block;padding:9px 15px;border:1px solid #168e52;border-radius:30px;background:#031d1b;color:#a5ffb5;font-size:14px;box-shadow:0 0 12px #00b86b22}.pill:before{content:"●";color:#00ff72;margin-left:8px;animation:pulse 1.3s infinite}
+h1{font-size:clamp(38px,5vw,70px);line-height:1.18;margin:12px 0;font-weight:900;letter-spacing:-1px}.gradient{background:linear-gradient(90deg,#00dcff,#2783ff,#a52bff,#ff45d9);background-clip:text;color:transparent;text-shadow:0 0 24px #2535ff35}.hero-copy p{font-size:15px;line-height:1.9;color:#d8e4ff;max-width:560px;margin:10px 0 20px}.buttons{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 23px;border-radius:30px;color:white;text-decoration:none;border:1px solid #168cff;background:linear-gradient(100deg,#300d79,#075caa);box-shadow:0 0 15px #1d70ff, inset 0 0 12px #633dff44;transition:.25s;font-size:14px}.btn.secondary{background:#020716;border-color:#5c6fa7;box-shadow:0 0 12px #132b6b}.btn:hover{transform:translateY(-3px);box-shadow:0 0 26px #00c8ff}
+.scene{height:470px;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 52% 34%,#063e9a 0,#06143b 45%,#020510 78%);border-radius:18px;box-shadow:inset 0 0 55px #075cff55}
+.scene:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 31px,#1375ff24 32px 33px),repeating-linear-gradient(0deg,transparent 0 31px,#1375ff18 32px 33px);animation:grid 14s linear infinite}
+.city{position:absolute;bottom:0;left:0;right:0;height:42%;background:linear-gradient(transparent,#020510),repeating-linear-gradient(90deg,#041334 0 22px,#1352a0 23px 25px,#020819 26px 40px);opacity:.9;clip-path:polygon(0 18%,6% 18%,6% 38%,12% 38%,12% 8%,18% 8%,18% 45%,24% 45%,24% 22%,32% 22%,32% 2%,38% 2%,38% 37%,45% 37%,45% 13%,54% 13%,54% 34%,61% 34%,61% 0,67% 0,67% 28%,74% 28%,74% 7%,82% 7%,82% 35%,91% 35%,91% 14%,100% 14%,100% 100%,0 100%);animation:cityglow 4s ease-in-out infinite alternate}
+.planet{position:absolute;top:3%;left:29%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#73e8ff,#1472ff 30%,#052c78 67%,#01091f 75%);box-shadow:0 0 35px #078fff,0 0 65px #124aff80;animation:globeFloat 5s ease-in-out infinite;overflow:visible}
+.planet:before,.planet:after{content:"";position:absolute;inset:25% -22%;border:2px solid #9c24ff;border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 12px #a100ff}.planet:after{inset:35% -15%;border-color:#00e5ff;transform:rotate(42deg)}
+.planet i{position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(25deg,transparent 0 12px,#54caff66 13px 15px,transparent 16px 25px);animation:earthSpin 9s linear infinite;box-shadow:inset -18px -8px 24px #01051eaa}.planet i:after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(90deg,transparent 0 18px,#50dfff55 19px 21px,transparent 22px 34px);animation:earthSpin 7s linear infinite reverse}
+.sign{position:absolute;right:5%;top:6%;font:italic bold 32px/1.15 cursive;color:#c06aff;text-shadow:0 0 8px #a100ff,0 0 22px #a100ff;transform:rotate(-6deg);animation:flicker 4s infinite}.sign b{color:#00dfff}
+.monitor{position:absolute;top:40%;height:38%;width:40%;padding:10px;background:linear-gradient(145deg,#061b39,#020510);border:3px solid #176fff;border-radius:8px;box-shadow:0 0 22px #007cff;z-index:2;direction:ltr;text-align:left;color:#39dfff;font:12px/1.65 Consolas,monospace;animation:screen 3s infinite alternate}.monitor:before{content:"";display:block;height:4px;margin-bottom:10px;background:linear-gradient(90deg,#00eaff,#a100ff,#246bff)}.monitor.left{left:7%;transform:perspective(400px) rotateY(8deg)}.monitor.right{right:4%;transform:perspective(400px) rotateY(-8deg)}
+.tower{position:absolute;right:0;bottom:7%;width:9%;height:42%;z-index:3;border:2px solid #872cff;border-radius:7px;background:#05091a;box-shadow:0 0 18px #a100ff;display:flex;flex-direction:column;justify-content:space-evenly;padding:7px}.tower i{display:block;aspect-ratio:1;border:3px solid #227aff;border-radius:50%;box-shadow:0 0 12px #00eaff,inset 0 0 12px #a100ff;animation:hue 2s linear infinite}
+.coder{position:absolute;z-index:5;bottom:-12%;left:31%;width:42%;height:62%;animation:float 5s ease-in-out infinite}.head{position:absolute;top:0;left:33%;width:36%;height:34%;border-radius:48% 48% 35% 35%;background:radial-gradient(ellipse at 35% 20%,#29354d 0,#0a1020 38%,#02040b 72%);z-index:2;box-shadow:inset 0 0 16px #061b4a,0 0 12px #02050b}.head:before{content:"";position:absolute;top:-7%;left:8%;width:84%;height:27%;border-radius:60% 60% 20% 20%;background:#03050b;box-shadow:0 -4px 10px #102c65}.head:after{content:"";position:absolute;top:34%;left:-12%;width:124%;height:23%;border:5px solid #167bff;border-radius:20px;box-shadow:0 0 15px #00c8ff}.hood{position:absolute;bottom:0;width:100%;height:78%;background:radial-gradient(ellipse at 50% 0,#25334d 0,#101827 36%,#03050c 76%);clip-path:polygon(24% 0,76% 0,100% 32%,100% 100%,0 100%,0 32%);border:2px solid #162b62;box-shadow:inset 0 0 25px #081e54}.hood:before{content:"";position:absolute;top:4%;left:12%;width:76%;height:85%;border-left:2px solid #1a3a72;border-right:2px solid #1a3a72;opacity:.45;transform:skewY(-8deg)}.logo{position:absolute;bottom:19%;left:23%;font:bold 42px monospace;color:#087cff;text-shadow:0 0 16px #00aaff;z-index:4}
+.floatlabel{position:absolute;z-index:6;padding:5px 8px;background:#07172f;border:1px solid #176bca;border-radius:7px;color:#9ce7ff;font:bold 12px monospace;animation:float 4s infinite alternate}.fl1{left:5%;top:30%}.fl2{right:14%;bottom:12%}.fl3{right:8%;top:27%}
+.courses{position:relative;padding:8px 2.4% 18px;background:linear-gradient(180deg,#02051088,#020510f2)}.section-title{text-align:center;margin:0 0 12px;font-size:26px;text-shadow:0 0 14px #168cff}.section-title span{color:#00dfff;margin:0 14px}.section-sub{text-align:center;color:#a8bbdf;font-size:13px;margin:-7px 0 16px}
+.course-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:10px}.course{min-height:148px;text-align:center;padding:12px 5px 10px;border:1px solid #1252a5;border-radius:18px;background:linear-gradient(145deg,#06132ce8,#030711f2);box-shadow:inset 0 0 20px #0751a522,0 0 12px #003cff20;transition:.25s;position:relative;overflow:hidden}.course:after{content:"";position:absolute;top:-100%;bottom:-100%;left:-60%;width:35%;transform:rotate(25deg);background:#ffffff10;animation:shine 6s infinite}.course:hover{transform:translateY(-5px);border-color:#00dfff;box-shadow:0 0 20px #007bff77}.icon{font-size:31px;font-weight:bold;line-height:1.25;color:#00dfff;text-shadow:0 0 13px #087cff}.course:nth-child(2n) .icon{color:#a100ff}.course:nth-child(3n) .icon{color:#ff9c35}.course h3{font-size:14px;margin:4px 0}.course p{font-size:12px;margin:4px 0 8px;color:#d4e0f9}.course a{display:block;border:1px solid #682aff;border-radius:20px;padding:5px 2px;font-size:11px;text-decoration:none;color:#fff;background:#060a1b}
+.bottom-grid{display:grid;grid-template-columns:1.1fr 1fr 1.2fr;gap:18px;padding:8px 2.4% 14px}.panel{min-height:140px;position:relative;overflow:hidden;border:1px solid #174fc0;border-radius:20px;padding:17px;background:linear-gradient(120deg,#031027,#020510);box-shadow:inset 0 0 24px #075bff24,0 0 18px #003cff22}.panel:nth-child(2){border-color:#7b1cff}.panel h3{margin:0 0 8px;color:#00dfff;font-size:18px}.panel p{font-size:13px;color:#cfddf8;line-height:1.7;margin:5px 0 10px}.panel-actions{display:flex;gap:8px;flex-wrap:wrap}.mini-btn{border:1px solid #167fff;border-radius:20px;padding:8px 13px;color:white;text-decoration:none;font-size:12px;background:#050b1d}.contact-lines{direction:ltr;text-align:center;line-height:1.9;color:#dce8ff;font-size:14px}.contact-lines a{color:#dce8ff;text-decoration:none}.wa{display:inline-block;background:#004b28;border:1px solid #00ff83;border-radius:22px;padding:6px 15px;margin-top:5px;color:#baffd6!important}
+footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4%;border-top:1px solid #1544a3;background:#01030a;color:#9aadd1;font-size:12px}footer .tagline{direction:ltr;color:#dc69ff;font-size:16px;font-style:italic}footer .social{display:flex;gap:10px}footer .social a{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid #126aff;color:#00dfff;text-decoration:none;font-weight:bold}
+@keyframes earthSpin{to{transform:rotate(360deg)}}@keyframes globeFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes pulse{50%{opacity:.3}}@keyframes grid{to{background-position:0 240px,240px 0}}@keyframes float{50%{translate:0 -9px}}@keyframes flicker{0%,96%,100%{opacity:1}97%{opacity:.65}}@keyframes screen{to{box-shadow:0 0 34px #155bff}}@keyframes hue{to{filter:hue-rotate(90deg)}}@keyframes cityglow{to{filter:brightness(1.5)}}@keyframes shine{50%,100%{left:140%}}
+@media(max-width:1100px){header{height:auto;flex-wrap:wrap;gap:10px;justify-content:center;padding:10px}nav{order:3;max-width:100%;overflow:auto}nav a{padding:9px;font-size:12px}.course-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.hero{grid-template-columns:.85fr 1.15fr}.sign{font-size:24px}.bottom-grid{gap:10px}}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:25px 5% 10px}.hero-copy{order:1}.scene{order:2;height:320px}.hero-copy{text-align:center}.hero-copy p{margin-left:auto;margin-right:auto}.buttons{justify-content:center}h1{font-size:44px}.planet{width:130px;height:130px}.sign{font-size:22px}.monitor{font-size:9px;padding:7px}.logo{font-size:28px}.course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom-grid{grid-template-columns:1fr}.brandmark{font-size:32px}.brandname{font-size:17px}.theme{display:none}footer{flex-wrap:wrap;justify-content:center;text-align:center}.section-title{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+
+.editor-section{padding:22px 3% 28px;background:radial-gradient(ellipse at 50% 0,#071943,#020510 70%);border-top:1px solid #123f8c}
+.editor-heading{text-align:center;font-size:25px;margin:0 0 8px;text-shadow:0 0 16px #007bff}
+.editor-intro{text-align:center;color:#a8bbdf;font-size:13px;margin:0 0 18px}
+.editor-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.editor-tab{cursor:pointer;border:1px solid #185dbe;background:#030b20;color:#dceaff;border-radius:22px;padding:10px 20px;font-weight:bold}
+.editor-tab.active{background:linear-gradient(100deg,#103dbe,#5d16a8);border-color:#00dfff;box-shadow:0 0 17px #007bff88}
+.editor-layout{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.editor-card{background:#030916;border:1px solid #155bc0;border-radius:17px;overflow:hidden;box-shadow:0 0 20px #003cff25}
+.editor-card-head{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:#07152d;border-bottom:1px solid #164c9a;color:#cfe7ff;font-size:13px}
+.editor-card-head span{color:#00dfff}
+#codeInput{display:block;width:100%;min-height:255px;resize:vertical;background:#020611;color:#b8f5ff;border:0;outline:0;padding:17px;direction:ltr;text-align:left;font:14px/1.7 Consolas,Monaco,monospace;tab-size:4}
+.editor-actions{display:flex;gap:9px;flex-wrap:wrap;padding:12px;background:#050c1c;border-top:1px solid #102f67}
+.run-btn,.clear-btn{cursor:pointer;border-radius:20px;padding:9px 17px;color:white;border:1px solid #00cfff;background:linear-gradient(100deg,#0654c8,#4312a1);box-shadow:0 0 12px #075cff44}
+.clear-btn{background:#080d1b;border-color:#596a91;box-shadow:none}
+#output{white-space:pre-wrap;overflow:auto;min-height:255px;max-height:350px;margin:0;padding:17px;background:#01040b;color:#7cffb2;direction:ltr;text-align:left;font:13px/1.7 Consolas,Monaco,monospace}
+.editor-note{color:#8ea4c8;font-size:12px;line-height:1.7;padding:10px 14px;border-top:1px solid #112d60}
+@media(max-width:700px){.editor-layout{grid-template-columns:1fr}.editor-heading{font-size:22px}#codeInput,#output{min-height:210px}.hero{min-height:auto}.scene{height:340px}.planet{width:145px;height:145px}}
+
+
+.lesson-section{--lesson-accent:#00d9ff;--lesson-glow:#1769ff;padding:25px 3%;background:radial-gradient(ellipse at 12% 0,color-mix(in srgb,var(--lesson-accent) 17%,#071a44),#020510 72%);border-top:1px solid var(--lesson-accent);transition:background .45s,border-color .45s}.lesson-section[hidden]{display:none}.lesson-top{max-width:1200px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center;gap:15px}.lesson-kicker{color:var(--lesson-accent);font-size:11px;letter-spacing:2px}.lesson-top h2{margin:5px 0;color:#fff;font-size:27px}.lesson-top p{margin:0;color:#9eb4d8;font-size:13px}.lesson-layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:280px 1fr;gap:16px}.lesson-list-wrap,.lesson-content{background:linear-gradient(145deg,#06132b,#030712);border:1px solid color-mix(in srgb,var(--lesson-accent) 65%,#164f9f);border-radius:17px;box-shadow:0 0 22px color-mix(in srgb,var(--lesson-glow) 25%,transparent);min-width:0;transition:border-color .4s,box-shadow .4s}.lesson-list-wrap{padding:13px;max-height:620px;overflow:auto}.lesson-list-wrap h3{color:var(--lesson-accent);margin:2px 0 12px;font-size:16px}.lesson-list{display:grid;gap:7px}.lesson-item{width:100%;text-align:right;border:1px solid #173968;background:#030918;color:#cfe2ff;padding:10px;border-radius:9px;cursor:pointer;font:12px Tahoma,Arial;transition:.2s}.lesson-item:hover,.lesson-item.active{border-color:var(--lesson-accent);background:color-mix(in srgb,var(--lesson-glow) 28%,#030918);box-shadow:0 0 12px color-mix(in srgb,var(--lesson-accent) 35%,transparent)}.lesson-content{padding:20px}.lesson-meta{color:var(--lesson-accent);font-size:12px}.lesson-content>h3{font-size:23px;margin:8px 0 14px}.lesson-body{display:grid;gap:9px;color:#d5e4ff;line-height:1.8;font-size:14px}.lesson-line{display:grid;grid-template-columns:27px 1fr;gap:9px;align-items:start;background:#050d20;border:1px solid #112d5d;border-radius:8px;padding:8px 10px}.lesson-line b{color:var(--lesson-accent)}.lesson-code{direction:ltr;text-align:left;color:var(--lesson-accent);font-family:Consolas,monospace;background:#01040b;border:1px solid #1650a0;padding:12px;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere}.lesson-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.quiz-area{margin-top:20px;padding-top:18px;border-top:1px solid #1a3c78}.quiz-area h3{color:var(--lesson-accent)}.quiz-area>p{color:#9fb6d9;font-size:13px}.quiz-question{padding:13px;margin:10px 0;border:1px solid #153a75;border-radius:11px;background:#030a19}.quiz-question legend{padding:0 5px;color:#f0f5ff;font-size:14px}.quiz-options{display:grid;gap:7px;margin-top:8px}.quiz-options label{display:flex;gap:8px;align-items:flex-start;color:#c9daf5;font-size:13px;cursor:pointer}.quiz-options input{accent-color:var(--lesson-accent);margin-top:3px}.quiz-result{margin-top:12px;padding:12px;border-radius:10px;color:#baffd8;background:#03251a;border:1px solid #087c52;display:none}.quiz-result.show{display:block}.quiz-result.review{color:#ffe8bd;background:#251b04;border-color:#8e6415}.course a{position:relative;z-index:2;cursor:pointer}.course a:hover{border-color:#00dfff;color:#00dfff}
+@media(max-width:800px){.lesson-layout{grid-template-columns:1fr}.lesson-list-wrap{max-height:280px}.lesson-top{align-items:flex-start;flex-direction:column}.lesson-content{padding:13px}.lesson-content>h3{font-size:20px}}
+
+
+/* Alternate hacker background: real artwork + subtle animated overlays */
+#hackerBackdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility .8s ease;background:#01030b}
+#hackerBackdrop:before{content:"";position:absolute;inset:-2%;background-image:url('hacker-background.png');background-size:cover;background-position:center 46%;background-repeat:no-repeat;animation:artDrift 22s ease-in-out infinite alternate;filter:saturate(1.08) contrast(1.04)}
+#hackerBackdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,3,12,.12),rgba(1,3,12,.04) 48%,rgba(1,3,12,.28)),linear-gradient(0deg,rgba(1,3,12,.65),transparent 32%,rgba(1,3,12,.2));}
+#hackerBackdrop .back-grid{position:absolute;z-index:1;inset:0;background-image:linear-gradient(#0c6dff12 1px,transparent 1px),linear-gradient(90deg,#0c6dff12 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 92%);animation:backGridMove 16s linear infinite}
+/* Rings rotate over the globe in the artwork, creating a clear moving-planet effect. */
+#hackerBackdrop .back-globe{position:absolute;z-index:2;top:1%;left:70%;width:min(31vw,430px);aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:transparent;border:2px solid transparent;box-shadow:0 0 25px #008dff22;animation:backGlobeFloat 5s ease-in-out infinite}
+#hackerBackdrop .back-globe:before{content:"";position:absolute;inset:12% -18%;border:3px solid #b52dff;border-left-color:#00eaff;border-right-color:#00eaff;border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 14px #b12bff, inset 0 0 12px #00d9ff;animation:backOrbit 8s linear infinite}
+#hackerBackdrop .back-globe:after{content:"";position:absolute;inset:24% -23%;border:2px solid #00eaff;border-top-color:#9d35ff;border-bottom-color:#9d35ff;border-radius:50%;transform:rotate(48deg);box-shadow:0 0 15px #00d9ff;animation:backOrbit 11s linear infinite reverse}
+#hackerBackdrop .orbit-two{display:none}
+#hackerBackdrop .hacker-figure{position:absolute;z-index:3;left:50%;bottom:0;width:0;height:0}
+#hackerBackdrop .hacker-head,#hackerBackdrop .hacker-hood{display:none}
+#hackerBackdrop .forming-name{position:absolute;left:28%;bottom:14%;transform:translateX(-50%);white-space:nowrap;font-family:Arial,sans-serif;font-weight:900;letter-spacing:.09em;font-size:clamp(18px,2.8vw,38px);direction:ltr;color:#dffaff;text-shadow:0 0 8px #00dfff,0 0 20px #075dff,0 0 38px #b300ff;overflow:hidden;width:0;animation:nameBuild 7s steps(16,end) infinite;z-index:4}
+#hackerBackdrop .back-code{position:absolute;z-index:2;color:#16bfff;font:12px/2 monospace;opacity:.55;white-space:pre;writing-mode:vertical-rl;animation:codeDrift 12s linear infinite;text-shadow:0 0 10px #007bff}
+#hackerBackdrop .back-code.c1{left:4%;top:-30%}#hackerBackdrop .back-code.c2{right:4%;top:-40%;color:#c04aff;animation-delay:-5s}#hackerBackdrop .back-code.c3{left:18%;top:-50%;animation-delay:-8s}
+body.hacker-bg #hackerBackdrop{opacity:1;visibility:visible}
+body.hacker-bg header,body.hacker-bg main,body.hacker-bg footer{position:relative;z-index:1}
+body.hacker-bg header{background:#02040dcc;backdrop-filter:blur(8px)}
+body.hacker-bg{background:#01030b}
+body.hacker-bg:before{opacity:0!important}
+body.hacker-bg .scene{display:none!important}
+body.hacker-bg .hero{grid-template-columns:1fr;min-height:490px}
+body.hacker-bg .hero-copy{max-width:620px;width:48%;margin-right:auto;margin-left:0;text-align:right;position:relative;z-index:4;padding:18px 0}
+body.hacker-bg .hero-copy p{margin-left:0;margin-right:0;text-shadow:0 2px 8px #000}
+body.hacker-bg .hero-copy h1{text-shadow:0 3px 12px #000}
+body.hacker-bg .buttons{justify-content:flex-start}
+body.hacker-bg #rain{opacity:0!important;visibility:hidden!important}
+body.hacker-bg .courses,body.hacker-bg .editor-section,body.hacker-bg .lesson-section{background-color:#020510c9;backdrop-filter:blur(3px)}
+#bgSwitch{cursor:pointer;white-space:nowrap;border:1px solid #00d9ff;border-radius:22px;padding:9px 12px;color:#eafaff;background:linear-gradient(110deg,#051b43dd,#3a087ddd);font:12px Tahoma,Arial;box-shadow:0 0 13px #007bff55}
+@keyframes artDrift{0%{transform:scale(1.02) translate3d(0,0,0)}100%{transform:scale(1.09) translate3d(-1.5%,1%,0)}}
+@keyframes backGridMove{to{background-position:42px 84px}}
+@keyframes backOrbit{to{rotate:360deg}}
+@keyframes backGlobeFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes nameBuild{0%,8%{width:0;opacity:0}12%,65%{width:16ch;opacity:1}78%,100%{width:0;opacity:0}}
+@keyframes codeDrift{to{transform:translateY(150vh)}}
+@media(max-width:700px){#hackerBackdrop:before{background-position:58% center}#hackerBackdrop .back-globe{top:10%;left:65%;width:58vw}#hackerBackdrop .forming-name{left:50%;bottom:8%;font-size:clamp(14px,4vw,23px)}body.hacker-bg .hero{min-height:570px;align-items:start;padding-top:26px}body.hacker-bg .hero-copy{width:100%;max-width:100%;margin:0;text-align:center;background:linear-gradient(90deg,#020510b0,#0205105c);border-radius:18px;padding:18px}body.hacker-bg .hero-copy p{margin-left:auto;margin-right:auto}body.hacker-bg .buttons{justify-content:center}#bgSwitch{font-size:10px;padding:8px}}
+@media(prefers-reduced-motion:reduce){#hackerBackdrop *,#hackerBackdrop *:before,#hackerBackdrop *:after{animation-duration:30s!important}}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div id="hackerBackdrop" aria-hidden="true"><div class="back-grid"></div><div class="back-globe"><div class="orbit-two"></div></div><div class="back-code c1">010101  &lt;/&gt;  101010  Python  const  0101</div><div class="back-code c2">&lt;/&gt;  010101  MEDO  function  11001</div><div class="back-code c3">while(true)  build()  01010  code()</div><div class="hacker-figure"><div class="forming-name">𝑴𝑬𝑫𝑶 𝑬𝑳 𝑱𝑨𝑵</div></div></div>
+<header>
+ <div class="brand"><div class="brandmark">&lt;/&gt;</div><div class="brandname">MEDO EL <span>JAN</span><small>Programming Academy</small></div></div>
+ <nav>
+  <a class="active" href="#home">⌂ الرئيسية</a><a href="#courses">🎓 الكورسات</a><a href="#editors"> &lt;/&gt; المحررات</a><a href="#lessonArea" id="navTests">☑ الاختبارات</a><a href="#projects">▣ المشاريع</a><a href="#about">♟ من نحن</a><a href="#contact">✉ تواصل معنا</a>
+ </nav>
+ <button id="bgSwitch" type="button" aria-pressed="false">🌌 خلفية الهاكرز</button><div class="theme"><span>☀️</span><span>🌙</span></div>
+</header>
+<main>
+<section class="hero" id="home">
+ <div class="hero-copy">
+  <div class="pill">أكاديمية ميدو الجان للبرمجة 🚀</div>
+  <h1>تعلم البرمجة<br><span class="gradient">وابني مستقبلك</span></h1>
+  <p>من الصفر إلى الاحتراف، مع أكثر من 250 درسًا تفاعليًا في جميع لغات البرمجة وتطوير الويب وتطبيقات سطح المكتب.</p>
+  <div class="buttons"><a class="btn" href="#courses">▶ ابدأ التعلم الآن</a><a class="btn secondary" href="#courses">استعرض الكورسات ▣</a></div>
+ </div>
+ <div class="scene" aria-label="مشهد برمجي مستقبلي متحرك">
+  <div class="city"></div><div class="planet"><i></i></div><div class="sign">Dream Big<br><b>Code Bigger</b></div>
+  <div class="monitor left">const future = () =&gt; {<br>&nbsp; learn();<br>&nbsp; build();<br>&nbsp; repeat();<br>};</div>
+  <div class="monitor right">function create() {<br>&nbsp; return "something<br>&nbsp; amazing";<br>}</div>
+  <div class="tower"><i></i><i></i><i></i></div><div class="coder"><div class="head"></div><div class="hood"></div><div class="logo">&lt;/&gt;</div></div>
+  <span class="floatlabel fl1">while (learning) {</span><span class="floatlabel fl2">build_project();</span><span class="floatlabel fl3">010101</span>
+ </div>
+</section>
+<section class="courses" id="courses">
+ <h2 class="section-title"><span>&lt;/&gt;</span>كورساتنا المميزة<span>&lt;/&gt;</span></h2>
+ <p class="section-sub">اختر المسار الذي يناسبك وابدأ رحلتك في عالم البرمجة</p>
+ <div class="course-grid">
+  <article class="course"><div class="icon">🐍</div><h3>Python</h3><p>50 درس</p><a href="#lessonArea" data-course="Python">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">JS</div><h3>JavaScript</h3><p>30 درس</p><a href="#lessonArea" data-course="JavaScript">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">▣</div><h3>HTML &amp; CSS</h3><p>30 درس</p><a href="#lessonArea" data-course="HTML & CSS">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">C++</div><h3>C++</h3><p>20 درس</p><a href="#lessonArea" data-course="C++">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">☕</div><h3>Java</h3><p>20 درس</p><a href="#lessonArea" data-course="Java">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">C♯</div><h3>C#</h3><p>20 درس</p><a href="#lessonArea" data-course="C#">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">▤</div><h3>SQL</h3><p>20 درس</p><a href="#lessonArea" data-course="SQL">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">php</div><h3>PHP</h3><p>20 درس</p><a href="#lessonArea" data-course="PHP">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">TS</div><h3>TypeScript</h3><p>20 درس</p><a href="#lessonArea" data-course="TypeScript">ابدأ التعلم ←</a></article>
+  <article class="course"><div class="icon">K</div><h3>Kotlin</h3><p>20 درس</p><a href="#lessonArea" data-course="Kotlin">ابدأ التعلم ←</a></article>
+ </div>
+</section>
+
+
+<section class="lesson-section" id="lessonArea" hidden>
+ <div class="lesson-top"><div><span class="lesson-kicker">MEDO EL JAN • ACADEMY</span><h2 id="lessonCourseTitle">مسار البرمجة</h2><p id="lessonCourseDesc">اختر درسًا وابدأ التعلم</p></div><button class="clear-btn" id="closeLessons" type="button">✕ إغلاق المسار</button></div>
+ <div class="lesson-layout"><aside class="lesson-list-wrap"><h3>📚 قائمة الدروس</h3><div id="lessonList" class="lesson-list"></div></aside><div class="lesson-content"><div class="lesson-meta" id="lessonMeta">الدرس 1</div><h3 id="lessonTitle">مقدمة</h3><div id="lessonBody" class="lesson-body"></div><div class="lesson-controls"><button class="run-btn" id="takeQuiz" type="button">ابدأ اختبار الدرس (10 أسئلة) ←</button><button class="clear-btn" id="prevLesson" type="button">الدرس السابق</button><button class="clear-btn" id="nextLesson" type="button">الدرس التالي ←</button></div><div id="quizArea" class="quiz-area" hidden><h3>🧠 اختبار الدرس</h3><p>اختَر إجابة واحدة لكل سؤال. الأسئلة مرتبطة بموضوع الدرس الحالي.</p><form id="quizForm"></form><button class="run-btn" id="submitQuiz" type="button">تصحيح الاختبار</button><div id="quizResult" class="quiz-result" aria-live="polite"></div></div></div></div>
+</section>
+
+<section class="editor-section" id="editors">
+ <h2 class="editor-heading"><span class="gradient">&lt;/&gt;</span> محررات البرمجة التفاعلية</h2>
+ <p class="editor-intro">اكتب الكود بنفسك واضغط تشغيل لمشاهدة النتيجة داخل الموقع</p>
+ <div class="editor-tabs">
+  <button class="editor-tab active" data-lang="js" type="button">JavaScript ⚡</button>
+  <button class="editor-tab" data-lang="py" type="button">Python 🐍</button>
+ </div>
+ <div class="editor-layout">
+  <div class="editor-card">
+   <div class="editor-card-head"><b>محرر الكود</b><span id="langLabel">JavaScript</span></div>
+   <textarea id="codeInput" spellcheck="false" aria-label="اكتب الكود هنا">console.log("Hello, MEDO EL JAN!");
+const x = 10;
+const y = 20;
+console.log("المجموع =", x + y);</textarea>
+   <div class="editor-actions"><button class="run-btn" id="runCode" type="button">▶ تشغيل الكود</button><button class="clear-btn" id="clearCode" type="button">مسح المحرر</button><button class="clear-btn" id="resetCode" type="button">إعادة المثال</button></div>
+   <div class="editor-note" id="editorNote">JavaScript يعمل مباشرة داخل المتصفح. لا تشغّل كودًا لا تعرف مصدره.</div>
+  </div>
+  <div class="editor-card">
+   <div class="editor-card-head"><b>النتيجة</b><span>OUTPUT</span></div>
+   <pre id="output">أهلًا بك! اضغط «تشغيل الكود» لعرض النتيجة هنا.</pre>
+   <div class="editor-note" id="runtimeNote">جاهز لتشغيل JavaScript.</div>
+  </div>
+ </div>
+</section>
+
+<section class="bottom-grid">
+ <article class="panel" id="editors"><h3>محررات البرمجة أونلاين &lt;/&gt;</h3><p>اكتب الكود وجربه مباشرة في متصفحك</p><div class="panel-actions"><a class="mini-btn" href="#editors" data-pick="py">محرر Python 🐍</a><a class="mini-btn" href="#editors" data-pick="js">JavaScript JS</a></div></article>
+ <article class="panel" id="tests"><h3>الاختبارات والتقييم 📋</h3><p>بعد كل درس، 10 أسئلة متنوعة من نفس الدرس</p><a class="btn" href="#courses">ابدأ الاختبار الآن 🏆</a></article>
+ <article class="panel" id="contact"><h3>تواصل معنا 🎧</h3><p>لو عندك استفسار، إحنا هنا عشان نساعدك دائمًا</p><div class="contact-lines">☎ 01278977255<br><a href="mailto:medoeljan7@gmail.com">medoeljan7@gmail.com</a><br><a class="wa" href="https://wa.me/message/IDAQMNL3ABVAN1" target="_blank" rel="noopener">☘ تواصل عبر الواتساب ☏</a></div></article>
+</section>
+</main>
+<footer id="about"><span class="tagline">Keep Coding ... Keep Growing ...</span><span>© 2025 · MEDO EL JAN Programming Academy · جميع الحقوق محفوظة</span><span class="social"><a href="https://youtube.com">▶</a><a href="https://linkedin.com">in</a><a href="https://t.me/">➤</a><a href="https://github.com">◉</a></span></footer>
+<script>
+const canvas=document.getElementById('rain'),ctx=canvas.getContext('2d');let drops=[],w=0,h=0;
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;const n=Math.ceil(w/20);drops=Array.from({length:n},()=>Math.random()*-h/18)}
+function draw(){ctx.fillStyle='rgba(1,3,12,.13)';ctx.fillRect(0,0,w,h);ctx.font='15px monospace';for(let i=0;i<drops.length;i++){const x=i*20,y=drops[i]*18;ctx.fillStyle=i%4===0?'#bb36ff':'#008bff';ctx.fillText(Math.random()>.5?'1':'0',x,y);if(y>h&&Math.random()>.975)drops[i]=0;else drops[i]+=.7+Math.random()*.5}requestAnimationFrame(draw)}
+addEventListener('resize',resize);resize();draw();
+const bgSwitch=document.getElementById('bgSwitch');
+bgSwitch.addEventListener('click',()=>{const enabled=document.body.classList.toggle('hacker-bg');bgSwitch.setAttribute('aria-pressed',String(enabled));bgSwitch.textContent=enabled?'✨ الخلفية الأصلية':'🌌 خلفية الهاكرز';});
+
+
+const defaultExamples={
+ js:'console.log("Hello, MEDO EL JAN!");\nconst x = 10;\nconst y = 20;\nconsole.log("المجموع =", x + y);',
+ py:'print("Hello, MEDO EL JAN!")\nx = 10\ny = 20\nprint("المجموع =", x + y)'
+};
+let activeLang='js', pyodideInstance=null, pyodideLoading=null;
+const editor=document.getElementById('codeInput'), output=document.getElementById('output');
+const langLabel=document.getElementById('langLabel'), runtimeNote=document.getElementById('runtimeNote'), editorNote=document.getElementById('editorNote');
+function chooseLanguage(lang){
+ activeLang=lang;
+ document.querySelectorAll('.editor-tab').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+ langLabel.textContent=lang==='js'?'JavaScript':'Python';
+ editor.value=defaultExamples[lang];
+ editorNote.textContent=lang==='js'?'JavaScript يعمل مباشرة داخل المتصفح. لا تشغّل كودًا لا تعرف مصدره.':'تشغيل Python يحتاج اتصال إنترنت أول مرة لتحميل محرك Pyodide.';
+ runtimeNote.textContent=lang==='js'?'جاهز لتشغيل JavaScript.':'محرك Python سيُحمّل عند أول تشغيل.';
+ output.textContent='اضغط «تشغيل الكود» لعرض النتيجة هنا.';
+}
+document.querySelectorAll('.editor-tab').forEach(b=>b.addEventListener('click',()=>chooseLanguage(b.dataset.lang)));
+document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>chooseLanguage(b.dataset.pick)));
+document.getElementById('clearCode').addEventListener('click',()=>{editor.value='';output.textContent='تم مسح المحرر.'});
+document.getElementById('resetCode').addEventListener('click',()=>chooseLanguage(activeLang));
+editor.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const s=editor.selectionStart;editor.setRangeText('    ',s,editor.selectionEnd,'end')}});
+function safeDisplay(v){return String(v)}
+async function runJS(){
+ const logs=[];
+ const fakeConsole={log:(...a)=>logs.push(a.map(safeDisplay).join(' ')),info:(...a)=>logs.push(a.map(safeDisplay).join(' ')),warn:(...a)=>logs.push('تحذير: '+a.map(safeDisplay).join(' ')),error:(...a)=>logs.push('خطأ: '+a.map(safeDisplay).join(' '))};
+ try{
+  const fn=new Function('console', '"use strict";\n'+editor.value);
+  const result=fn(fakeConsole);
+  if(result&&typeof result.then==='function') await result;
+  output.textContent=logs.length?logs.join('\n'):'تم التنفيذ بنجاح (لا يوجد ناتج مطبوع).';
+  runtimeNote.textContent='اكتمل تشغيل JavaScript.';
+ }catch(err){output.textContent=err.name+': '+err.message;runtimeNote.textContent='حدث خطأ أثناء التنفيذ.'}
+}
+async function ensurePyodide(){
+ if(pyodideInstance)return pyodideInstance;
+ if(pyodideLoading)return pyodideLoading;
+ pyodideLoading=new Promise((resolve,reject)=>{
+  if(window.loadPyodide){window.loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/'}).then(resolve,reject);return}
+  const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js';
+  sc.onload=()=>window.loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/'}).then(resolve,reject);
+  sc.onerror=()=>reject(new Error('تعذر تحميل محرك Python. تأكد من اتصال الإنترنت ثم حاول مرة أخرى.'));
+  document.head.appendChild(sc);
+ });
+ pyodideInstance=await pyodideLoading;return pyodideInstance;
+}
+async function runPython(){
+ output.textContent='جارٍ تجهيز محرك Python لأول مرة...';runtimeNote.textContent='قد يستغرق التحميل الأول بعض الوقت.';
+ try{
+  const py=await ensurePyodide();let captured=[];
+  py.setStdout({batched:s=>captured.push(s)});py.setStderr({batched:s=>captured.push('خطأ: '+s)});
+  await py.runPythonAsync(editor.value);
+  output.textContent=captured.join('\n')||'تم التنفيذ بنجاح (لا يوجد ناتج مطبوع).';runtimeNote.textContent='اكتمل تشغيل Python.';
+ }catch(err){output.textContent=String(err);runtimeNote.textContent='تعذر تشغيل Python.'}
+}
+document.getElementById('runCode').addEventListener('click',async()=>{
+ const btn=document.getElementById('runCode');btn.disabled=true;btn.textContent='⏳ جارٍ التشغيل';
+ try{if(activeLang==='js')await runJS();else await runPython()}finally{btn.disabled=false;btn.textContent='▶ تشغيل الكود'}
+});
+
+
+// Course lessons: generated lesson paths with substantial explanations and a fresh 10-question quiz per lesson.
+const courseDefinitions={
+ 'Python':{count:50,icon:'🐍',topics:['التعرّف على Python','تثبيت بيئة العمل','print والطباعة','المتغيرات','أنواع البيانات','العمليات الحسابية','النصوص Strings','تنسيق النصوص','الإدخال input','التحويل بين الأنواع','القيم المنطقية','المقارنات','if و else','الشروط المتداخلة','حلقة for','حلقة while','break و continue','القوائم Lists','فهرسة القوائم','إضافة وحذف العناصر','Tuples','Sets','Dictionaries','التكرار على القواميس','الدوال Functions','المعاملات Parameters','القيمة المرجعة return','النطاق Scope','Lambda','List Comprehension','معالجة الأخطاء','try و except','قراءة الملفات','كتابة الملفات','الوحدات Modules','استيراد المكتبات','التعامل مع الوقت','مبادئ OOP','Classes و Objects','الوراثة','التغليف','المكررات Iterators','Generators','التعبيرات النمطية','JSON','طلبات HTTP','اختبار البرنامج','تنظيم المشروع','مشروع آلة حاسبة','مشروع إدارة مهام']},
+ 'JavaScript':{count:30,icon:'JS',topics:['مقدمة JavaScript','إضافة JavaScript إلى HTML','المتغيرات let و const','أنواع البيانات','العمليات الحسابية','النصوص Template Literals','المقارنات','الشروط if','switch','حلقة for','حلقة while','الدوال Functions','Arrow Functions','المصفوفات Arrays','طرق المصفوفات','الكائنات Objects','DOM','اختيار عناصر الصفحة','تغيير المحتوى والتنسيق','الأحداث Events','النماذج Forms','التحقق من الإدخال','JSON','التخزين المحلي','التعامل مع الأخطاء','Promises','async و await','جلب البيانات Fetch','الوحدات Modules','مشروع تفاعلي صغير']},
+ 'HTML & CSS':{count:30,topics:['هيكل صفحة HTML','العناوين والفقرات','الروابط والصور','القوائم','الجداول','النماذج','الحقول والأزرار','العناصر الدلالية','مقدمة CSS','المحددات Selectors','الألوان والخلفيات','الوحدات والمسافات','نموذج الصندوق Box Model','الحدود والظلال','الخطوط والنصوص','Display','Position','Flexbox','CSS Grid','التصميم المتجاوب','Media Queries','الحركات Transitions','Animations','Pseudo Classes','Pseudo Elements','تنسيق النماذج','بطاقات المحتوى','قائمة تنقل','صفحة هبوط','مشروع صفحة كاملة']},
+ 'C++':{count:20,topics:['مقدمة C++','إعداد المترجم','أول برنامج','المتغيرات','أنواع البيانات','الإدخال والإخراج','العمليات الحسابية','الشروط','switch','حلقات for','حلقات while','المصفوفات','النصوص','الدوال','المراجع والمؤشرات','الهياكل struct','مقدمة OOP','Classes و Objects','الوراثة','مشروع تطبيقي']},
+ 'Java':{count:20,topics:['مقدمة Java','JDK وبيئة العمل','أول برنامج','المتغيرات','أنواع البيانات','العمليات','الشروط','switch','حلقات التكرار','المصفوفات','النصوص Strings','الدوال Methods','الكائنات Objects','Classes','المنشئات Constructors','التغليف Encapsulation','الوراثة Inheritance','تعدد الأشكال','معالجة الاستثناءات','مشروع تطبيقي']},
+ 'C#':{count:20,topics:['مقدمة C#','إعداد .NET','أول برنامج','المتغيرات','أنواع البيانات','التحويل بين الأنواع','العمليات','الشروط','switch','حلقات التكرار','المصفوفات','القوائم List','الدوال Methods','Classes و Objects','الخصائص Properties','الوراثة','الواجهات Interfaces','LINQ basics','معالجة الأخطاء','مشروع تطبيقي']},
+ 'SQL':{count:20,topics:['مقدمة قواعد البيانات','إنشاء قاعدة بيانات','CREATE TABLE','أنواع الأعمدة','INSERT INTO','SELECT','WHERE','ORDER BY','UPDATE','DELETE','LIKE و BETWEEN','الدوال التجميعية','GROUP BY','HAVING','العلاقات بين الجداول','INNER JOIN','LEFT JOIN','المفاتيح الأساسية والخارجية','الاستعلامات الفرعية','مشروع قاعدة بيانات']},
+ 'PHP':{count:20,topics:['مقدمة PHP','إعداد بيئة PHP','أول صفحة PHP','المتغيرات','أنواع البيانات','النصوص','العمليات','الشروط','حلقات التكرار','المصفوفات','الدوال','النماذج GET و POST','التحقق من المدخلات','الجلسات Sessions','ملفات Cookies','قراءة وكتابة الملفات','الاتصال بقاعدة البيانات','استعلامات آمنة','معالجة الأخطاء','مشروع موقع صغير']},
+ 'TypeScript':{count:20,topics:['مقدمة TypeScript','إعداد المترجم','الأنواع الأساسية','التصريح بالمتغيرات','المصفوفات','Tuples','Union Types','Type Aliases','Interfaces','الدوال والأنواع','الأنواع الاختيارية','التضييق Type Narrowing','Enums','Generics','Classes','الوراثة','الوحدات Modules','التعامل مع DOM','إعداد مشروع','مشروع تطبيقي']},
+ 'Kotlin':{count:20,topics:['مقدمة Kotlin','إعداد بيئة العمل','أول برنامج','val و var','أنواع البيانات','النصوص','الشروط','when','حلقات التكرار','Ranges','الدوال','القيم القابلة للفراغ','المصفوفات','القوائم Collections','Lambdas','Classes','Data Classes','الوراثة','مبادئ Coroutines','مشروع تطبيقي']}
+};
+const lessonArea=document.getElementById('lessonArea');let currentCourse='Python',currentLesson=0,quizQuestions=[];
+function courseInfo(name){return courseDefinitions[name]||courseDefinitions.Python}
+function getTopic(name,index){const d=courseInfo(name);return d.topics[index%d.topics.length]}
+function lessonCount(name){return courseInfo(name).count}
+function lessonExplanation(name,index){const topic=getTopic(name,index);const lang=name;let example='';
+ const snippets={
+ 'Python':['print("Hello, world!")','name = "Medo"','age = 18','total = 10 + 5','if total > 10:\n    print("كبير")','for number in range(3):\n    print(number)','def greet(name):\n    return f"أهلاً {name}"','items = ["HTML", "CSS", "Python"]'],
+ 'JavaScript':['const message = "Hello, world!";\nconsole.log(message);','let score = 10;\nscore += 5;\nconsole.log(score);','const items = ["HTML", "CSS", "JS"];\nconsole.log(items.length);','function greet(name) {\n  return `أهلاً ${name}`;\n}\nconsole.log(greet("Medo"));','if (10 > 5) {\n  console.log("الشرط صحيح");\n}'],
+ 'HTML & CSS':['<h1>أهلاً بك</h1>\n<p>هذه فقرة تجريبية.</p>','a {\n  color: #00d9ff;\n  padding: 12px;\n}','.card {\n  display: flex;\n  gap: 1rem;\n}','@media (max-width: 600px) {\n  h1 { font-size: 1.5rem; }\n}'],
+ 'C++':['#include <iostream>\nusing namespace std;\nint main() {\n  cout << "Hello";\n  return 0;\n}'],
+ 'Java':['public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello");\n  }\n}'],
+ 'C#':['using System;\nclass Program {\n  static void Main() {\n    Console.WriteLine("Hello");\n  }\n}'],
+ 'SQL':['SELECT name, score\nFROM students\nWHERE score >= 80\nORDER BY score DESC;'],
+ 'PHP':['<?php\n$name = "Medo";\necho "Hello, " . $name;\n?>'],
+ 'TypeScript':['const score: number = 10;\nconst title: string = "TypeScript";\nconsole.log(title, score);'],
+ 'Kotlin':['fun main() {\n  val message = "Hello, Kotlin"\n  println(message)\n}']};
+ example=(snippets[name]||snippets.Python)[index%(snippets[name]||snippets.Python).length];
+ const lines=[`في هذا الدرس سنتعرف على: ${topic}.`,`هذا المفهوم من الأساسيات المهمة في مسار ${lang}.`,`ابدأ بقراءة المثال البرمجي أدناه قبل كتابة أي كود.`,`لاحظ الكلمات الأساسية وطريقة ترتيب التعليمات.`,`كل تعليمة لها وظيفة محددة داخل البرنامج.`,`اكتب المثال بنفسك ولا تعتمد على النسخ فقط.`,`غيّر اسم متغير أو قيمة بسيطة ولاحظ الفرق.`,`قارن الناتج المتوقع بالناتج الذي يظهر عند التشغيل.`,`إذا ظهر خطأ، اقرأ رسالة الخطأ بهدوء.`,`تأكد من الأقواس وعلامات الاقتباس عند استخدامها.`,`راجع أسماء المتغيرات حتى تكون واضحة ومعبرة.`,`قسّم المشكلة إلى خطوات صغيرة يسهل اختبارها.`,`استخدم تعليقات قصيرة لتوضيح سبب كتابة الكود.`,`جرّب قيمة أخرى للتأكد من فهم السلوك.`,`اسأل نفسك ما المدخلات التي يحتاجها المثال؟`,`ثم حدد ما النتيجة التي تريد الوصول إليها.`,`اربط المفهوم الحالي بما تعلمته في الدروس السابقة.`,`تجنب تكرار الكود إذا كان من الممكن تنظيمه بطريقة أفضل.`,`حافظ على تنسيق موحد ليسهل عليك قراءة البرنامج.`,`عند تعديل الكود، اختبره بعد كل تغيير صغير.`,`دوّن الملاحظات التي اكتشفتها أثناء التجربة.`,`طبّق الفكرة في مثال صغير من اختيارك.`,`في النهاية، تأكد أنك تستطيع شرح المفهوم بكلماتك.`,`بعد إكمال القراءة، أجب عن الأسئلة العشرة للتأكد من الفهم.`];
+ return {topic,lines,example};}
+function openCourse(name){currentCourse=name;currentLesson=0;lessonArea.hidden=false;document.getElementById('lessonCourseTitle').textContent=`مسار ${name}`;document.getElementById('lessonCourseDesc').textContent=`${lessonCount(name)} درسًا — شرح موسع وتطبيق واختبار مختلف لكل درس`;renderLessonList();renderLesson();lessonArea.scrollIntoView({behavior:'smooth',block:'start'});}
+function renderLessonList(){const list=document.getElementById('lessonList');list.innerHTML='';for(let i=0;i<lessonCount(currentCourse);i++){const b=document.createElement('button');b.type='button';b.className='lesson-item'+(i===currentLesson?' active':'');b.textContent=`${i+1}. ${getTopic(currentCourse,i)}`;b.addEventListener('click',()=>{currentLesson=i;renderLessonList();renderLesson();});list.appendChild(b)}}
+function renderLesson(){const lesson=lessonExplanation(currentCourse,currentLesson);const courseOrder=Object.keys(courseDefinitions).indexOf(currentCourse);const hue=(courseOrder*37+currentLesson*23+188)%360;lessonArea.style.setProperty('--lesson-accent',`hsl(${hue} 100% 62%)`);lessonArea.style.setProperty('--lesson-glow',`hsl(${(hue+28)%360} 95% 52%)`);lessonArea.dataset.lessonTheme=`hue-${hue}`;document.getElementById('lessonMeta').textContent=`${currentCourse} • الدرس ${currentLesson+1} من ${lessonCount(currentCourse)}`;document.getElementById('lessonTitle').textContent=lesson.topic;const body=document.getElementById('lessonBody');body.innerHTML='';lesson.lines.slice(0,12).forEach((line,i)=>{const el=document.createElement('div');el.className='lesson-line';el.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b><span></span>`;el.querySelector('span').textContent=line;body.appendChild(el)});const code=document.createElement('pre');code.className='lesson-code';code.textContent=lesson.example;body.appendChild(code);lesson.lines.slice(12).forEach((line,i)=>{const el=document.createElement('div');el.className='lesson-line';el.innerHTML=`<b>${String(i+13).padStart(2,'0')}</b><span></span>`;el.querySelector('span').textContent=line;body.appendChild(el)});document.getElementById('quizArea').hidden=true;document.getElementById('quizResult').className='quiz-result';document.getElementById('quizResult').textContent='';document.getElementById('prevLesson').disabled=currentLesson===0;document.getElementById('nextLesson').disabled=currentLesson===lessonCount(currentCourse)-1;}
+function makeQuiz(name,index){const topic=getTopic(name,index);const isWeb=name==='HTML & CSS',isSQL=name==='SQL';const q=[];const concepts=[
+ {q:`ما الموضوع الأساسي في هذا الدرس؟`,opts:[topic,'إنشاء نظام تشغيل','تصميم جهاز مادي','لا شيء مما سبق'],a:0},
+ {q:`ما أفضل طريقة لفهم ${topic}؟`,opts:['قراءة المثال وتجربته وتغيير القيم','حفظ الكلمات دون تطبيق','تجاهل رسائل الخطأ','كتابة كل شيء في سطر عشوائي'],a:0},
+ {q:`عند ظهور خطأ أثناء تطبيق ${topic}، ماذا تفعل؟`,opts:['أقرأ الرسالة وأراجع السطر الذي سبب الخطأ','أحذف المشروع بالكامل','أتجاهل الخطأ دائمًا','أغيّر كل الكود مرة واحدة'],a:0},
+ {q:`لماذا نجرّب المثال بعد تغييره؟`,opts:['لنتأكد من فهم أثر التغيير','لزيادة حجم الملف فقط','لإخفاء الأخطاء','لإيقاف البرنامج'],a:0},
+ {q:`أي ممارسة تساعد على وضوح الكود؟`,opts:['أسماء واضحة وتنسيق ثابت','أسماء عشوائية','حذف المسافات دائمًا','تكرار الكود دون داعٍ'],a:0},
+ {q:`ما الخطوة المناسبة قبل كتابة المثال؟`,opts:['فهم المطلوب والمدخلات والناتج المتوقع','تخمين الناتج فقط','فتح ملفات غير مرتبطة','تجاهل هدف الدرس'],a:0},
+ {q:`كيف تتأكد من صحة فهمك للدرس؟`,opts:['تشرح الفكرة وتطبّق مثالًا بنفسك','تنسخ المثال دون قراءته','تغلق المحرر فورًا','تتخطى الاختبار'],a:0},
+ {q:`ما فائدة تقسيم المشكلة إلى خطوات؟`,opts:['يجعل الحل أسهل في الفهم والاختبار','يجعل الكود مستحيل القراءة','يلغي الحاجة للتجربة','يزيد الأخطاء بالضرورة'],a:0},
+ {q:`أي خيار يمثل ممارسة جيدة بعد تعديل الكود؟`,opts:['تشغيله واختبار النتيجة مجددًا','افتراض أنه يعمل دون اختبار','حذف كل التعليقات','تغيير موضوع الدرس'],a:0},
+ {q:`ما الهدف من اختبار نهاية درس ${topic}؟`,opts:['قياس الفهم وتحديد ما يحتاج إلى مراجعة','استبدال الدرس بالكامل','تعلم موضوع غير مرتبط','إيقاف التقدم'],a:0}
+ ];
+ // Shuffle correct-option positions per lesson, preserving answer keys and creating a different order each lesson.
+ return concepts.map((item,i)=>{let opts=item.opts.slice();const shift=(index+i)%opts.length;opts=opts.slice(shift).concat(opts.slice(0,shift));return {q:item.q,opts,a:(item.a-shift+opts.length)%opts.length}})
+}
+function startQuiz(){quizQuestions=makeQuiz(currentCourse,currentLesson);const form=document.getElementById('quizForm');form.innerHTML='';quizQuestions.forEach((q,i)=>{const fs=document.createElement('fieldset');fs.className='quiz-question';const legend=document.createElement('legend');legend.textContent=`${i+1}. ${q.q}`;fs.appendChild(legend);const opts=document.createElement('div');opts.className='quiz-options';q.opts.forEach((op,j)=>{const label=document.createElement('label');const radio=document.createElement('input');radio.type='radio';radio.name='q'+i;radio.value=j;radio.required=true;const txt=document.createElement('span');txt.textContent=op;label.append(radio,txt);opts.appendChild(label)});fs.appendChild(opts);form.appendChild(fs)});document.getElementById('quizResult').className='quiz-result';document.getElementById('quizResult').textContent='';document.getElementById('quizArea').hidden=false;document.getElementById('quizArea').scrollIntoView({behavior:'smooth',block:'start'})}
+document.querySelectorAll('[data-course]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openCourse(a.dataset.course)}));document.getElementById('navTests').addEventListener('click',e=>{e.preventDefault();openCourse(currentCourse);setTimeout(startQuiz,120)});document.getElementById('closeLessons').addEventListener('click',()=>{lessonArea.hidden=true;document.getElementById('courses').scrollIntoView({behavior:'smooth'})});document.getElementById('takeQuiz').addEventListener('click',startQuiz);document.getElementById('prevLesson').addEventListener('click',()=>{if(currentLesson>0){currentLesson--;renderLessonList();renderLesson()}});document.getElementById('nextLesson').addEventListener('click',()=>{if(currentLesson<lessonCount(currentCourse)-1){currentLesson++;renderLessonList();renderLesson()}});document.getElementById('submitQuiz').addEventListener('click',()=>{const form=document.getElementById('quizForm');if(!form.reportValidity())return;let score=0;quizQuestions.forEach((q,i)=>{const selected=form.querySelector(`input[name="q${i}"]:checked`);if(selected&&Number(selected.value)===q.a)score++});const result=document.getElementById('quizResult');result.textContent=`نتيجتك: ${score} من ${quizQuestions.length} (${Math.round(score/quizQuestions.length*100)}%). ${score>=8?'ممتاز! يمكنك الانتقال للدرس التالي.':'راجع الشرح مرة أخرى ثم أعد المحاولة.'}`;result.className='quiz-result show'+(score>=8?'':' review');});
+
+</script>
+</body></html>
